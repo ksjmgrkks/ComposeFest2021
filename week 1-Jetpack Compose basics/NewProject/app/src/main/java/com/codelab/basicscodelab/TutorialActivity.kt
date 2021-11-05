@@ -1,6 +1,5 @@
 package com.codelab.basicscodelab
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,21 +20,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basicscodelab.data.SampleData
-import com.codelab.basicscodelab.ui.theme.BasicsCodelabTheme
+import com.codelab.basicscodelab.ui.theme.ksjmgrkksTheme
 
-class MainActivity : ComponentActivity() {
+class TutorialActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BasicsCodelabTheme {
-                Conversation(SampleData.conversationSample)
+            ksjmgrkksTheme {
+                MyAppStart()
             }
 
         }
     }
 }
 
-data class Message(val author: String, val body: String)
+data class Message(val chatName: String, val chatMessage: String)
 
 @Composable
 fun MessageCard(msg: Message) {
@@ -62,10 +61,10 @@ fun MessageCard(msg: Message) {
 
         // We toggle the isExpanded variable when we click on this Column
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
-            Surface(color = MaterialTheme.colors.primary) {
+            Surface(color = MaterialTheme.colors.secondaryVariant) {
                 Text(
-                    text = msg.author,
-                    color = MaterialTheme.colors.secondaryVariant,
+                    text = msg.chatName,
+                    color = MaterialTheme.colors.background,
                     style = MaterialTheme.typography.subtitle2
                 )
             }
@@ -77,7 +76,7 @@ fun MessageCard(msg: Message) {
                 elevation = 1.dp,
             ) {
                 Text(
-                    text = msg.body,
+                    text = msg.chatMessage,
                     modifier = Modifier.padding(all = 4.dp),
                     // If the message is expanded, we display all its content
                     // otherwise we only display the first line
@@ -105,6 +104,12 @@ fun MessageCard(msg: Message) {
 //}
 
 @Composable
+private fun MyAppStart() {
+    Conversation(SampleData.chatConversation)
+}
+
+
+@Composable
 fun Conversation(messages: List<Message>) {
     LazyColumn {
         items(messages) { message ->
@@ -116,7 +121,7 @@ fun Conversation(messages: List<Message>) {
 @Preview
 @Composable
 fun PreviewConversation() {
-    BasicsCodelabTheme {
-        Conversation(SampleData.conversationSample)
+    ksjmgrkksTheme {
+        MyAppStart()
     }
 }

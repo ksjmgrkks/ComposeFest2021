@@ -5,10 +5,10 @@ import com.codelab.basicscodelab.Message
 object SampleData {
     // Sample conversation data
     val name = "김규성"
-    val conversationSample = listOf(
+    val chatConversation = listOf(
         Message(
             name,
-            "Test...Test...Test..."
+            "Jetpack Compose 코드랩 1주차 두근두근"
         ),
         Message(
             name,
@@ -25,8 +25,8 @@ object SampleData {
         ),
         Message(
             name,
-            "I think Kotlin is my favorite programming language.\n" +
-                    "It's so much fun!"
+            "자바만 하다가 코틀린을 하니까\n" +
+                    "신선하고 재밌네요"
         ),
         Message(
             name,

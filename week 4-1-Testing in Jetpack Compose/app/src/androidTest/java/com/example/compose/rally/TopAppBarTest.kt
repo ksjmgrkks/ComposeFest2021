@@ -63,23 +63,29 @@ class TopAppBarTest {
             .assertExists()
     }
 
-    //수정해야함
+    //Optional exercise
     @Test
-    fun rallyTopAppBarTest_clickChangesTab() {
+    fun rallyTopAppBarTest_ChangesTab() {
         composeTestRule.setContent {
             RallyApp()
         }
         composeTestRule
-            .onNodeWithContentDescription(RallyScreen.Bills.name)
+            .onNode(
+                hasContentDescription(RallyScreen.Bills.name)
+                , useUnmergedTree = true)
             .performClick()
             .assertIsSelected()
 
         composeTestRule
-            .onNodeWithContentDescription(RallyScreen.Accounts.name)
+            .onNode(
+                hasContentDescription(RallyScreen.Accounts.name)
+                , useUnmergedTree = true)
             .assertIsNotSelected()
 
         composeTestRule
-            .onNodeWithContentDescription(RallyScreen.Overview.name)
+            .onNode(
+                hasContentDescription(RallyScreen.Overview.name)
+                , useUnmergedTree = true)
             .assertIsNotSelected()
     }
 }
